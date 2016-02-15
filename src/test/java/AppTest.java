@@ -22,4 +22,24 @@ public class AppTest extends FluentTest {
       goTo("http://localhost:4567/");
       assertThat(pageSource()).contains("Triangle Types");
   }
+
+  @Test
+  public void checkEquilateral() {
+      goTo("http://localhost:4567/");
+      fill("#sideA").with("2");
+      fill("#sideB").with("2");
+      fill("#sideC").with("2");
+      submit(".btn");
+      assertThat(pageSource()).contains("equilateral");
+  }
+
+  @Test
+  public void checkNotATriangle() {
+      goTo("http://localhost:4567/");
+      fill("#sideA").with("2");
+      fill("#sideB").with("2");
+      fill("#sideC").with("8");
+      submit(".btn");
+      assertThat(pageSource()).contains("That's not a triangle!");
+  }
 }
